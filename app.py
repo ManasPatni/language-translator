@@ -1,3 +1,9 @@
+import streamlit as st
+
+# ✅ Move st.set_page_config() to the absolute top
+st.set_page_config(page_title="🌍 AI Translator Chatbot", layout="centered")
+
+# ✅ Keep imports after setting Streamlit config
 import sys
 import pysqlite3
 sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
@@ -8,16 +14,7 @@ try:
 except RuntimeError:
     asyncio.set_event_loop(asyncio.new_event_loop())
 
-
-import streamlit as st
-
-# 🛠️ Set page config FIRST, before any other Streamlit function
-st.set_page_config(page_title="🌍 AI Translator Chatbot", layout="centered")
-
-# Now, proceed with other imports and Streamlit commands
-st.title("Welcome to AI Translator Chatbot")
-
-
+# 🛠️ Import other libraries
 import chromadb
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -29,7 +26,6 @@ from sentence_transformers import SentenceTransformer, util
 # ✅ Initialize ChromaDB for Translation Memory
 @st.cache_resource
 def initialize_chromadb():
-    """Initialize ChromaDB client and create/retrieve a collection for translations."""
     chroma_client = chromadb.PersistentClient(path="./chroma_translation_db")
     collection = chroma_client.get_or_create_collection(name="translation_memory")
     return collection
@@ -68,9 +64,7 @@ def query_llama3(text, source_lang, target_lang):
     except Exception as e:
         return f"⚠️ API Error: {str(e)}"
 
-# ✅ Streamlit UI
-st.set_page_config(page_title="🌍 AI Translator Chatbot", layout="centered")
-
+# ✅ Streamlit UI (Only ONE `st.set_page_config()`)
 st.title("🌍 AI Translator Chatbot")
 st.write("Translate text fluently between multiple languages using AI-powered translation memory!")
 
@@ -90,6 +84,6 @@ if st.button("Translate"):
     else:
         st.warning("⚠️ Please enter text, source language, and target language.")
 
-# Footer
-#st.markdown("---")
-#st.markdown("Made with ❤️ using **Llama 3, ChromaDB & Streamlit**")
+Footer
+st.markdown("---")
+st.markdown("Made with ❤️ using **Llama 3, ChromaDB & Streamlit**")
