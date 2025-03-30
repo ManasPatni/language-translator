@@ -74,6 +74,6 @@ if st.button("Translate"):
     else:
         st.warning("⚠️ Please enter text, source language, and target language.")
 
-Footer
+#Footer
 st.markdown("---")
 st.markdown("Made with ❤️ using **Llama 3, ChromaDB & Streamlit**")
