@@ -1,3 +1,6 @@
+import sys
+import pysqlite3
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 import streamlit as st
 import chromadb
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -71,6 +74,6 @@ if st.button("Translate"):
     else:
         st.warning("⚠️ Please enter text, source language, and target language.")
 
-# Footer
-#st.markdown("---")
-#st.markdown("Made with ❤️ using **Llama 3, ChromaDB & Streamlit**")
+Footer
+st.markdown("---")
+st.markdown("Made with ❤️ using **Llama 3, ChromaDB & Streamlit**")
