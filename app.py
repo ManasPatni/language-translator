@@ -4,11 +4,12 @@ sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
 import streamlit as st
 
-# ✅ Set page config FIRST
-st.set_page_config(page_title="My App", layout="wide")
+# 🛠️ Set page config FIRST, before any other Streamlit function
+st.set_page_config(page_title="🌍 AI Translator Chatbot", layout="centered")
 
-# Other imports and Streamlit commands
-st.title("Welcome to My App")
+# Now, proceed with other imports and Streamlit commands
+st.title("Welcome to AI Translator Chatbot")
+
 
 import chromadb
 from langchain.text_splitter import RecursiveCharacterTextSplitter
