@@ -4,5 +4,4 @@ langchain
 langchain_huggingface
 langchain_groq
 sentence-transformers
-torch
 pysqlite3-binary
