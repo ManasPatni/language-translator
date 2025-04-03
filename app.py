@@ -2,6 +2,10 @@ import sys
 import pysqlite3
 sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 import streamlit as st
+
+# ✅ Set Page Config FIRST (before anything else)
+st.set_page_config(page_title="🌍 AI Translator Chatbot", layout="centered")
+
 import chromadb
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -53,8 +57,6 @@ def query_llama3(text, source_lang, target_lang):
         return f"⚠️ API Error: {str(e)}"
 
 # ✅ Streamlit UI
-st.set_page_config(page_title="🌍 AI Translator Chatbot", layout="centered")
-
 st.title("🌍 AI Translator Chatbot")
 st.write("Translate text fluently between multiple languages using AI-powered translation memory!")
 
@@ -74,6 +76,6 @@ if st.button("Translate"):
     else:
         st.warning("⚠️ Please enter text, source language, and target language.")
 
-#Footer
+# Footer
 st.markdown("---")
 st.markdown("Made with ❤️ using **Llama 3, ChromaDB & Streamlit**")
